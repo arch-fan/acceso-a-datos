@@ -18,15 +18,15 @@ export default async function Home() {
     `,
     })
     .from(projects)
-    .leftJoin(
+    .innerJoin(
       employeeProjects,
       eq(projects.projectId, employeeProjects.projectId)
     )
-    .leftJoin(
+    .innerJoin(
       employeesRealistic,
       eq(employeeProjects.employeeId, employeesRealistic.employeeId)
     )
-    .groupBy(projects.projectId, projects.budget);
+    .groupBy(projects.projectId);
 
   console.log(result);
 
