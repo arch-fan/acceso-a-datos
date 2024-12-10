@@ -49,21 +49,21 @@ export const projects = sqliteTable("projects", {
 export const employeeProjects = sqliteTable(
   "employee_projects",
   {
-    employeeId: integer("employee_id").references(
-      () => employeesRealistic.employeeId
-    ),
-    projectId: integer("project_id").references(() => projects.projectId),
+    employeeId: integer("employee_id")
+      .references(() => employeesRealistic.employeeId)
+      .primaryKey(),
+    projectId: integer("project_id")
+      .references(() => projects.projectId)
+      .primaryKey(),
     hoursWorked: real("hours_worked").notNull(),
   },
-  (table) => ({
-    pk: primaryKey(table.employeeId, table.projectId),
-  })
+  (table) => [primaryKey({ columns: [table.employeeId, table.projectId] })]
 );
 
 export const orders = sqliteTable("orders", {
   orderId: integer("order_id").primaryKey({ autoIncrement: true }),
   customerId: integer("customer_id").references(() => customers.customerId),
-  orderDate: text("order_date").notNull(), // Almacenar fechas como texto en formato ISO
+  orderDate: text("order_date").notNull(),
   amount: real("amount").notNull(),
 });
 
