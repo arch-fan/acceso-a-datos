@@ -1,5 +1,7 @@
 import { drizzle } from "drizzle-orm/libsql";
 
+export const db = drizzle("file:db/company_database.db");
+
 import {
   sqliteTable,
   integer,
@@ -7,8 +9,6 @@ import {
   real,
   primaryKey,
 } from "drizzle-orm/sqlite-core";
-
-export const db = drizzle("file:db/company_database.db");
 
 export const customers = sqliteTable("customers", {
   customerId: integer("customer_id").primaryKey({ autoIncrement: true }),

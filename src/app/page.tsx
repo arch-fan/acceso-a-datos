@@ -1,6 +1,7 @@
 import { DataTable } from "@/components/data-table";
 import { db, employeeProjects, employeesRealistic, projects } from "../../db";
 import { sql, eq } from "drizzle-orm";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default async function Home() {
   const result = await db
@@ -28,10 +29,11 @@ export default async function Home() {
     )
     .groupBy(projects.projectId);
 
-  console.log(result);
-
   return (
-    <div className="flex items-center justify-center w-full h-screen">
+    <div className="flex flex-col gap-2 items-center justify-center max-w-2xl mx-auto w-full h-screen">
+      <div className="w-full flex flex-row-reverse">
+        <ModeToggle />
+      </div>
       <DataTable data={result} />
     </div>
   );
