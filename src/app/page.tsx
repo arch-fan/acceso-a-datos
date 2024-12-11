@@ -30,7 +30,7 @@ export default async function Home() {
     .groupBy(projects.projectId);
 
   return (
-    <div className="flex flex-col gap-2 items-center justify-center max-w-2xl mx-auto w-full h-screen">
+    <div className="flex p-4 flex-col gap-2 items-center justify-center max-w-2xl mx-auto w-full min-h-screen">
       <div className="w-full flex flex-row-reverse">
         <ModeToggle />
       </div>
